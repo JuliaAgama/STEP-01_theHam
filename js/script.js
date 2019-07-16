@@ -4,7 +4,7 @@
 
     // 1. Search field
 (() => {
-    $('#magnifier-trigger').click(() => {$('#search-wrap').toggleClass('hidden')});
+    $('#magnifier-trigger').on('click', () => {$('#search-wrap').toggleClass('hidden')});
 
      // 2. Подменю со ссылкой на все разделы страницы
         // 2.1. Добавить подменю
@@ -28,13 +28,13 @@
         let position = $($(`${this[0].hash}`)).offset().top;
         $('html, body').animate({scrollTop: position-100}, 1000);
     };
-    $pageLinks.click(function(event) {$(this).slowScrollTo(1000)});
+    $pageLinks.on('click', function(event) {$(this).slowScrollTo(1000)});
 
 })();
 
 // 3. кнопка "Наверх" с фиксированным позиционариванием. При клике на нее - плавно прокрутить страницу в самый верх
 
-const $btnToTop = ('<div class="btn-to-top">^</div>');
+const $btnToTop = ('<div class="btn-to-top" style="display: none">^</div>');
 $($('script')[0]).before($btnToTop);
 
 $.fn.slowDisplay = function(speed) {
@@ -43,7 +43,7 @@ $.fn.slowDisplay = function(speed) {
 
 $(document).scroll(function() {$('.btn-to-top').slowDisplay('slow')});
 
-$('.btn-to-top').click(function(event) {
+$('.btn-to-top').on('click', function(event) {
     event.preventDefault();
     $('html, body').animate({scrollTop: 0}, 'slow');
 });
@@ -112,7 +112,7 @@ $('.btn-to-top').click(function(event) {
 
     // 2. установить слушателя на клик по меню сервисов:
 
-    $('.service-item').click(function() {
+    $('.service-item').on('click', function() {
 
         // 2.1. удалить у всех пунктов класс selected и добавить класс selected кликнутому:
         $('.services-menu > .selected').removeClass('selected');
@@ -253,9 +253,10 @@ $('.btn-to-top').click(function(event) {
         };
 
         function displayLargePic ($btn) {
-            $btn.click(function() {
-                let $zoom = $(`<div class="zoom">${this.parentElement.parentElement.previousElementSibling.outerHTML}</div>`).insertAfter($('#work-section'));
-                $('.zoom > img').click(function() {$zoom.remove() });
+            $btn.on('click', function() {
+
+                let $zoom = $(`<div class="zoom"><img src="${$(this).closest('.gallery-mouseover').prev().attr('src')}" alt="img NOT FOUND"></div>`).insertAfter($('#work-section'));
+                $('.zoom > img').on('click', function() {$zoom.remove() });
             });
         };
 
@@ -267,7 +268,7 @@ $('.btn-to-top').click(function(event) {
 
     // 3. Установить слушателя на клик по списку work-menu
 
-    $('.work-item').click( function(event) {
+    $('.work-item').on('click', function(event) {
 
         // 3.1. по клику выделить только кликнутый пункт и очистить галерею
         $('#work-menu > .selected').removeClass('selected');
@@ -283,7 +284,7 @@ $('.btn-to-top').click(function(event) {
 
     // 4. По клику на кнопку 'load more имитировать подгрузку - показать прелоадер на 2 сек.
 
-    $('#load-more').click( function() {
+    $('#load-more').on('click', function() {
 
         displayPreloader($(this));
 
@@ -305,6 +306,8 @@ $('.btn-to-top').click(function(event) {
 })();
 
 
+
+
 /********** ABOUT SECTION **********/
 
 ( () => {
@@ -324,65 +327,150 @@ $('.btn-to-top').click(function(event) {
         'CEO',
         'UX GROUP',
         'img/about/client-1.jpg',
-        'Blinteger dignissim, augue tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.'
+        'nteger dignissim, augue tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.'
     );
     let client02 = new Client (
         'Caroline Downfort',
         'Manager',
         'Vainy Cliearfix',
         'img/about/client-2.jpg',
-        'Adig. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.'
+        'dig. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.'
     );
     let client03 = new Client (
         'Mary White',
         'Producing Accounter',
         'Max & Co.',
         'img/about/client-3.jpg',
-        'Oquam dui laoreet sem, non dictum odio nisi facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.'
+        'facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.'
     );
     let client04 = new Client (
         'Hasan Ali',
         'UX Designer',
         'Mandille Inc.',
         'img/about/client-4.jpg',
-        'Integer dignissim, augue tempus ucies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laorltricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.'
+        'nteger dignissim, augue tempus ucies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laorltricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.'
+    );
+    let client05 = new Client (
+        'Lenny Freasky',
+        'Sales Director',
+        'Marine Time',
+        'img/about/client-5.jpg',
+        'inar odio eget aliquam facilisis. Tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.'
+    );
+    let client06 = new Client (
+        'Kate Browny',
+        'Financial Director',
+        'L.A.P',
+        'img/about/client-6.jpg',
+        'ngue tempus ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam faliquam facilisis.'
+    );
+    let client07 = new Client (
+        'William Drake',
+        'CTO',
+        'Landing Craint',
+        'img/about/client-7.jpg',
+        'facilisis dignissim, augue tempus ultricies luctus, q luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.'
+    );
+      let client08 = new Client (
+        'Winnie Lee',
+        'Marketing Manager',
+        'Kusioki Kawasaka',
+        'img/about/client-8.jpg',
+        ' dignissim, us ultricies luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam faciaugue tempus ultricies luctus, q luctus, quam dui laoreet sem, non dictum odio nisi quis massa. Morbi pulvinar odio eget aliquam facilisis.'
     );
 
-    let clients =[client01, client02, client03, client04];
+    let clients =[client01, client02, client03, client04, client05, client06, client07, client08];
 
 
-    // 0.2. Содать и вставить контент в карусель
+    // 0.2. Содать и вставить фотки в карусель
+
+    let $facesCarousel = $('.faces-carousel');
+
     for (let i = 0, length = clients.length; i < length; i++) {
-        let $sayingContent = (
-        `<div class="saying-content client-0${i}">
-                    <div class="saying-quote">
-                        <img src="img/about/blockquotes.png" alt="img NOT FOUND">
-                    </div>
-                    <div class="saying-cite">
-                        <p>${clients[i].cite}</p>
-                    </div>
-                    <div class="saying-name">
-                        <p>${clients[i].name}</p>
-                        <p>${clients[i].position}</p>
-                    </div>
-                    <div class="saying-pic-box">
-                        <div class="saying-pic-face data-index="${i}" style="background-image: url(${clients[i].picture});"></div>
-                    </div>
-               </div>`);
-        $('.saying-block').append($sayingContent);
+        let $face = $(`<div class="face" data-index="${i}" style="background-image: url(${clients[i].picture});"></div>`);
+
+        if(i === 2) {$face.addClass('selected')};
+        if(i < 1 || i > 4) {$face.addClass('hidden')};
+        $facesCarousel.append($face);
+
+    };
+
+    // 0.3. показать отзыв, имя, должность и фото одного из них.
+    displayFeedback();
+
+    function displayFeedback () {
+
+        let i = +$('.faces-carousel > .selected').attr('data-index');
+
+        $('.saying-cite p').text(clients[i].cite);
+        $('.saying-name p:nth-child(1)').text(clients[i].name);
+        $('.saying-name p:nth-child(2)').text(clients[i].position);
+        $('.saying-pic-face').css({backgroundImage: `url(${clients[i].picture})`});
     };
 
 
-    // 1. Slick plugin
+    // 1. по клику на фото в карусели
 
-    $(document).ready(function(){
-        $('.saying-block').slick({
-            dots: true,
-            fade: true,
-        });
-        // все нужные изменения сделаны в скрипте и стиле\темах самого слика
+    $('.face').on('click', moveFaceUp);
+
+        // 1.1. фотка сдвигается вверх
+    function moveFaceUp () {
+
+        $('.faces-carousel > .selected').removeClass('selected')
+        $(this).addClass('selected');
+
+        // 1.2. меняется сверху цитата, имя\должность, фото
+        displayFeedback();
+    };
+
+
+    // 2. карусель влево-вправо: по клику переносим первый элемент в конец карусели, меняя класс хидден, где нужно.
+
+    let leftBtn = document.querySelector('.left-btn');
+    let rightBtn = document.querySelector('.right-btn');;
+
+        // 2.1. правая кнопка
+    $('.right-btn').on('click', function() {
+
+        // удаляем слушателя на нодлист, чтобы после обновления нодлиста снова его установить уже на обновленный нодлист
+
+        $('.face').off('click', moveFaceUp);
+
+        let $selected = $('.faces-carousel > .selected');
+        $selected.removeClass('selected');
+        $selected.next().addClass('selected');
+
+        displayFeedback();
+
+        if ($($('.face')[5]).hasClass('selected')) {
+            $($('.face')[1]).addClass('hidden');
+            $($('.face')[5]).removeClass('hidden');
+            $facesCarousel.append($($('.face')[0]).clone(true));
+            $('.face')[0].remove();
+        };
+        $('.face').on('click', moveFaceUp);
     });
 
+
+        // 2.1. левая кнопка
+    $('.left-btn').on('click', function() {
+        $('.face').off('click', moveFaceUp);
+
+        let $selected = $('.faces-carousel > .selected');
+        $selected.removeClass('selected');
+        $selected.prev().addClass('selected');
+
+        displayFeedback();
+
+        if ($($('.face')[0]).hasClass('selected')) {
+            $($('.face')[4]).addClass('hidden');
+            let lastFace = $('.face')[$('.face').length-1];
+            $($('.face')[0]).removeClass('hidden');
+            ($('.face')[0]).before(lastFace.cloneNode(true));
+            lastFace.remove();
+        };
+        $('.face').off('click', moveFaceUp);
+    });
 
 })();
 
@@ -408,7 +496,7 @@ $('.btn-to-top').click(function(event) {
             function coverPicture (htmlCollection) {
                 let arr = Array.prototype.slice.call(htmlCollection);
                 arr.forEach(function(el) {
-                    $(el).mouseenter(function () {
+                    $(el).on('mouseenter', function () {
                         $imagesMouseover = $(`<div class="images-mouseover">
                                    <div class="zoom-btn"><i class="fas fa-search-plus"></i></div>
                                    <div class="expand-btn"><i class="fas fa-expand-arrows-alt"></i></div>
@@ -420,13 +508,14 @@ $('.btn-to-top').click(function(event) {
                         displayLargePic($('.images-mouseover .expand-btn'));
                     });
                     function displayLargePic ($btn) {
-                        $btn.click(function() {
-                            let $zoom = $(`<div class="zoom">${this.parentElement.previousElementSibling.outerHTML}</div>`).insertAfter($('#images-section'));
-                            $('.zoom > img').click(function() {$zoom.remove() });
+                        $btn.on('click', function() {
+                            let $zoom = $(`<div class="zoom"><img src="${$(this).closest('.images-mouseover').prev().attr('src')}" alt="img NOT FOUND"></div>`).insertAfter($('#images-section'));
+
+                            $('.zoom > img').on('click', function() {$zoom.remove() });
                         });
                     };
     // 4. при отводе мышки с картинки - убирать ховер-заставку
-                    $(el).mouseleave(function () {this.removeChild(this.lastChild) });
+                    $(el).on('mouseleave', function () {this.removeChild(this.lastChild) });
                 });
             };
 
@@ -448,7 +537,7 @@ $('.btn-to-top').click(function(event) {
 
     // 7. при клике на кнопку - имитировать подгрузку - показать прелоадер на 2 сек.
 
-    $('.images-section .btn').click(function(){
+    $('.images-section .btn').on('click', function(){
 
         displayPreloader($(this));
 

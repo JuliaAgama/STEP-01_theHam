@@ -667,6 +667,8 @@ h3 span {
     color: #18cfab;
 }
 
+
+
 /********** ABOUT SECTION **********/
 
 .about-section {
@@ -674,7 +676,6 @@ h3 span {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    margin-bottom: 30px;
     padding-bottom: 100px;
 }
 
@@ -685,16 +686,6 @@ h3 span {
 .about-content > h4 {
     color: #fff;
     font-weight: 400;
-}
-.saying-block {
-    position: relative;
-    width: 100%;
-    margin: 30px auto 100px;
-}
-
-
-.saying-quote img {
-    margin: 0 auto;
 }
 
 .saying-cite {
@@ -731,7 +722,64 @@ h3 span {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+
 }
+
+.people-slider {
+    width: 450px;
+    height: 80px;
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.left-btn, .right-btn {
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px 12px;
+    border: 1px solid #eee;
+}
+.left-btn:hover, .right-btn:hover {
+    background-color: #18cfab;
+    color: #fff;
+    border-color: #18cfab;
+}
+
+.faces-carousel {
+    width: 350px;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+}
+.face {
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid #18cfab;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+/*
+    color: red;
+    font-size: 30px;
+    font-weight: 700;
+*/
+}
+
+.face:hover {
+    box-shadow: 0 0 0px 8px rgba(24,207,171,0.4);
+}
+
+.faces-carousel > .selected {
+    transform: translate(0, -10px);
+    box-shadow: 0 0 0px 8px rgba(24,207,171,0.4);
+}
+
+
+
 
 
 
